@@ -6,11 +6,11 @@ var AWS = require('aws-sdk')
 //loggly url, token and tag configuration
 //user need to edit while uploading code via blueprint
 var logglyConfiguration = {
-  url: 'http://plutovr.loggly.com/bulk',
+  url: 'http://logs-01.loggly.com/bulk',
   tags: 'CloudwatchMetrics'
 };
 
-var encryptedLogglyToken = "AQICAHiKOtjZY+BR+qHmaFnaHEPbGds+QlxDsew4COHdTfaOaAHzQvH3yBHOajMe9pWBLmsPAAAAgzCBgAYJKoZIhvcNAQcGoHMwcQIBADBsBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDNAeF3jOHaFTgWpVAgIBEIA/K0wKus3BSHiROTobuabUEWaBLHgsEY6T9n0bREcmHDi56al0IfuYE3G/5SpkHz5Ws4T9Yvnl0JD24E8x6Eon";
+var encryptedLogglyToken = "AQICAHiKOtjZY+BR+qHmaFnaHEPbGds+QlxDsew4COHdTfaOaAGK29Q/1azpiMccRFRFCOokAAAAgzCBgAYJKoZIhvcNAQcGoHMwcQIBADBsBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDF6LVWn8h54KvLYJogIBEIA/KsYcvGf9SETLD7eTed++NCrSerAR7S05By0RgbLtf5DLjTPAXZKCk2khWNjVRWf9S7tC7gSbK4Bw0vwxFtRr";
 var encryptedLogglyTokenBuffer = new Buffer(encryptedLogglyToken, "base64");
 
 var kms = new AWS.KMS({

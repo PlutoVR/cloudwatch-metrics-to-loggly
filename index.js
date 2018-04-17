@@ -40,7 +40,7 @@ exports.handler = function (event, context) {
   decryptLogglyToken().then(function () {
     getMetricsListFromAWSCloudwatch().then(function () {
       sendRemainingStatics().then(function () {
-        context.done('all statics are sent to Loggly');
+        context.done();
       }, function () {
         context.done();
       });
@@ -75,12 +75,17 @@ exports.handler = function (event, context) {
 
   //retreives all list of valid metrics from cloudwatch
   function getMetricsListFromAWSCloudwatch() {
+    const desiredMetrics = ["EnvironmentHealth", "ConsumedReadCapacityUnits", "ConsumedWriteCapacityUnits", "ActiveConnectionCount", "BytesUsedForCache", "PercentageDiskSpaceUsed"];
+    return Promise.all(desiredMetrics.map(getSpecificMetrics));
+  }
 
+  function getSpecificMetrics(metricName) {
     return Q.Promise(function (resolve, reject) {
       var promisesResult = [];
       var getMetricsList = function (nextToken) {
         var params = {
-          MetricName: ["EnvironmentHealth", "ConsumedReadCapacityUnits", "ConsumedWriteCapacityUnits", "ActiveConnectionCount", "BytesUsedForCache", "PercentDiskSpaceUsed"]
+          Dimensions: [],
+          MetricName: metricName
         };
 
 

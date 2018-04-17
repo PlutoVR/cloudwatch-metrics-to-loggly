@@ -79,23 +79,8 @@ exports.handler = function (event, context) {
     return Q.Promise(function (resolve, reject) {
       var promisesResult = [];
       var getMetricsList = function (nextToken) {
-        // Remove Coments if requierd filter
         var params = {
-          
-          /*
-          // Add filter dimensions
-          // Remove Coments if requierd filter
-          Dimensions: [{
-              // Required
-              Name:"String_Value" ,
-              Value:"" 
-            },
-          ],
-          //Add Metric name : ["CPUUtilization","DiskReadOps","StatusCheckFailed_System"] -> String Values
-          MetricName:"String Value"           
-          // more filters
-            
-         */
+          MetricName: ["EnvironmentHealth", "ConsumedReadCapacityUnits", "ConsumedWriteCapacityUnits", "ActiveConnectionCount", "BytesUsedForCache", "PercentDiskSpaceUsed"]
         };
 
 
